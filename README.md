@@ -1,19 +1,18 @@
-# Basic Projects
+# My Projects Repository
 
-This repository contains my basic practice projects.
+This repository contains multiple projects created for learning
+and practice purposes.
 
-## 👨‍🎓 About Me
-- Name: Gaurav Joshi
-- Course: BCA
-- Learning: HTML, CSS, JavaScript, Git & GitHub
+## Projects Included
+- HTML CSS Website
+- JavaScript Calculator
+- C Programming Practice
 
-## 📂 Projects Included
-- HTML basic pages
-- CSS design practice
-- JavaScript beginner programs
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- C Language
 
-## 🚀 Purpose
-To improve my coding skills and track my learning progress.
-
----
-⭐ If you find this repository useful, feel free to star it!
+## Author
+Gaurav Joshi
