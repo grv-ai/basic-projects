@@ -1,162 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Calculator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Simple Calculator</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
         }
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#667eea,#764ba2);
         }
-        .calculator {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            width: 320px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        .calc{
+            width:260px;
+            background:white;
+            padding:20px;
+            border-radius:15px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.25);
         }
-        .display {
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            font-size: 2.5em;
-            font-weight: 300;
-            text-align: right;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+
+        #screen{
+            width:100%;
+            height:50px;
+            font-size:22px;
+            text-align:right;
+            padding:8px;
+            margin-bottom:15px;
+            border:none;
+            outline:none;
+            background:#f1f1f1;
+            border-radius:8px;
         }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+
+        .buttons{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:10px;
         }
-        button {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.5em;
-            font-weight: 500;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        button{
+            height:50px;
+            font-size:18px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#e0e0e0;
+            transition:0.2s;
         }
-        button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+        button:hover{
+            background:#d5d5d5;
         }
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+        .operator{
+            background:#ff9f43;
+            color:white;
         }
-        button.operator {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+
+        .operator:hover{
+            background:#ff851b;
         }
-        button.operator:hover {
-            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+
+        .equal{
+            background:#1dd1a1;
+            color:white;
+            grid-column:span 2;
         }
-        button.equal {
-            background: linear-gradient(45deg, #00d2d3, #54a0ff);
-            grid-column: span 2;
+
+        .equal:hover{
+            background:#10ac84;
         }
-        button.equal:hover {
-            background: linear-gradient(45deg, #54a0ff, #00d2d3);
+
+        .clear{
+            background:#ff6b6b;
+            color:white;
         }
-        button.clear {
-            background: linear-gradient(45deg, #ff4757, #c44569);
+
+        .clear:hover{
+            background:#ee5253;
         }
-        button.clear:hover {
-            background: linear-gradient(45deg, #c44569, #ff4757);
+
+        .back{
+            background:#576574;
+            color:white;
         }
-        @media (max-width: 480px) {
-            .calculator {
-                width: 90%;
-                padding: 20px;
-            }
-            .display {
-                font-size: 2em;
-                padding: 15px;
-            }
-            button {
-                font-size: 1.2em;
-                padding: 15px;
-            }
+
+        .back:hover{
+            background:#2f3542;
         }
     </style>
 </head>
+
 <body>
-    <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button class="operator" onclick="appendToDisplay('/')">/</button>
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button class="operator" onclick="appendToDisplay('*')">*</button>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button class="operator" onclick="appendToDisplay('-')">-</button>
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button class="equal" onclick="calculate()">=</button>
-            <button class="operator" onclick="appendToDisplay('+')">+</button>
-        </div>
+
+<div class="calc">
+
+    <input type="text" id="screen" readonly>
+
+    <div class="buttons">
+        <button class="clear" onclick="clearScreen()">C</button>
+        <button class="back" onclick="back()">⌫</button>
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+
+        <button onclick="add('9')">9</button>
+        <button class="operator" onclick="add('+')">+</button>
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+
+        <button onclick="add('6')">6</button>
+        <button class="operator" onclick="add('-')">-</button>
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+
+        <button onclick="add('3')">3</button>
+        <button class="operator" onclick="add('*')">*</button>
+        <button onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+
+        <button class="equal" onclick="result()">=</button>
+        <button class="operator" onclick="add('/')">/</button>
     </div>
 
-    <script>
-        let display = document.getElementById('display');
-        let currentInput = '';
+</div>
 
-        function appendToDisplay(value) {
-            if (currentInput === '0' && value !== '.') {
-                currentInput = value;
-            } else {
-                currentInput += value;
-            }
-            display.textContent = currentInput;
-        }
+<script>
+    let screen = document.getElementById("screen");
 
-        function clearDisplay() {
-            currentInput = '';
-            display.textContent = '0';
-        }
+    function add(value){
+        screen.value += value;
+    }
 
-        function calculate() {
-            try {
-                currentInput = eval(currentInput).toString();
-                display.textContent = currentInput;
-            } catch (error) {
-                display.textContent = 'Error';
-                currentInput = '';
-            }
-        }
-    </script>
+    function clearScreen(){
+        screen.value = "";
+    }
+
+    function back(){
+        screen.value = screen.value.slice(0, -1);
+    }
+
+    function result(){
+        screen.value = eval(screen.value);
+    }
+</script>
+
 </body>
 </html>
